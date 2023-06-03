@@ -1,13 +1,16 @@
-FROM python 3.10
+FROM python:3
 
 COPY . /app
 
 WORKDIR  /app
 
+RUN apt-get update
+RUN apt-get install -y python
 RUN pip install -r requirements.txt
 RUN pip install --upgrade pip
 
 EXPOSE 8000
+ENTRYPOINT ["python"]
 
-CMD ['python3' ,'main.py']
+CMD ["main.py"]
 
